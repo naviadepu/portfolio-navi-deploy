@@ -59,16 +59,16 @@ const WorkPage: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="custom-cursor min-h-screen flex items-center justify-center bg-[#F2F2F2] px-4 pt-24 pb-12 relative">
+      <div className="custom-cursor min-h-screen flex items-center justify-center bg-[#F2F2F2] px-4 sm:px-6 pt-24 pb-12 relative">
         {/* Home Icon (Top Left) */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="absolute top-10 left-10 z-50"
+          className="absolute top-10 left-4 sm:left-10 z-50"
         >
           <Link href="/" className="text-gray-600 hover:text-black transition-colors cursor-pointer block p-2">
-            <FaHome className="text-xl" />
+            <FaHome className="text-lg sm:text-xl" />
           </Link>
         </motion.div>
         
@@ -79,7 +79,7 @@ const WorkPage: React.FC = () => {
           className="w-full max-w-6xl"
         >
           <motion.h2
-            className="text-5xl font-extrabold mb-4 leading-tight handwritten text-center"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 leading-tight handwritten text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -92,11 +92,11 @@ const WorkPage: React.FC = () => {
               <path d="M0 12 Q50 24 100 12 T200 12" stroke="#bdbdbd" strokeWidth="3" fill="none" />
             </svg>
           </div>
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
             {projects.map((project, i) => (
               <motion.div
                 key={project.title}
-                className={`bg-white p-7 rounded-lg shadow-lg relative max-w-xs min-w-[250px] flex flex-col items-center hover:scale-105 transition-transform duration-200 border-l-8 border-dashed border-black ${rotations[i % rotations.length]}`}
+                className={`bg-white p-4 sm:p-6 md:p-7 rounded-lg shadow-lg relative w-full sm:max-w-xs sm:min-w-[250px] flex flex-col items-center hover:scale-105 transition-transform duration-200 border-l-8 border-dashed border-black ${rotations[i % rotations.length]}`}
                 custom={i}
                 initial="hidden"
                 animate="visible"
