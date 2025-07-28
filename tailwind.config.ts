@@ -12,6 +12,11 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        mono: ['Courier New', 'Courier', 'monospace'],  // Classic typewriter style
+        plex: ['IBM Plex Mono', 'monospace'],            // Modern monospaced
+        space: ['Space Mono', 'monospace'],              // Retro aesthetic
+      },
     },
   },
   plugins: [],

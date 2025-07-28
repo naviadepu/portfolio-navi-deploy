@@ -1,21 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+/* Tailwind CSS directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Handwritten font for project titles */
+* {
+  font-family: Azeret_Mono; 
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+
+/* Custom vintage cursor */
+.custom-cursor {
+  cursor: url('/vintage-cursor.png'), auto;
+}
+
+/* Optional hover effect */
+.custom-cursor:hover {
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+}
+
+/* Handwritten font for project titles */
+.handwritten {
+  font-family: 'Shadows Into Light', cursive;
+}
+
+/* Elegant font for polaroid name */
+.polaroid-name {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
 }

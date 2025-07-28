@@ -1,0 +1,35 @@
+.work-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.polaroid-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between polaroids */
+}
+
+.polaroid {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    width: 200px; /* Fixed width for polaroids */
+    transition: transform 0.2s; /* Animation for hover effect */
+}
+
+.polaroid:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.polaroid h3 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.polaroid p {
+    font-size: 0.9em;
+    color: #555;
+} 
