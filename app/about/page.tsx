@@ -55,9 +55,6 @@ export default function About() {
                   className="rounded-md"
                   style={{ clipPath: 'inset(10% 0 10% 0)' }}
                 />
-                <div className="absolute -top-6 left-14">
-                  <Image src="/tape.png" alt="Tape" width={100} height={40} />
-                </div>
               </div>
             </motion.div>
 
