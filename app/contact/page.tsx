@@ -1,77 +1,129 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Navbar from '../../components/Navbar';
-import { FaEnvelopeOpen, FaLinkedin, FaGithub, FaHome } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import StatusBar from "@/components/StatusBar";
+import SectionLabel from "@/components/SectionLabel";
+import Card from "@/components/Card";
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.55, ease: "easeOut", delay },
+});
+
+const links = [
+  {
+    label: "email",
+    value: "vaishnavi.adepu444@email.com",
+    href: "mailto:vaishnavi.adepu444@email.com",
+    external: false,
+  },
+  {
+    label: "linkedin",
+    value: "vaishnavi-adepu444",
+    href: "https://www.linkedin.com/in/vaishnavi-adepu444",
+    external: true,
+  },
+  {
+    label: "github",
+    value: "naviadepu",
+    href: "https://github.com/naviadepu",
+    external: true,
+  },
+  {
+    label: "resume",
+    value: "download PDF",
+    href: "/resume.pdf",
+    external: false,
+    download: true,
+  },
+];
 
 export default function Contact() {
   return (
-    <>
-      <Navbar />
-      <main className="min-h-screen bg-[#F2F2F2] px-4 sm:px-6 pt-24 pb-12 flex flex-col items-center justify-center relative">
-        {/* Home Icon (Top Left) */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="absolute top-10 left-4 sm:left-10 z-50"
-        >
-          <Link href="/" className="text-gray-600 hover:text-black transition-colors cursor-pointer block p-2">
-            <FaHome className="text-lg sm:text-xl" />
-          </Link>
-        </motion.div>
-        
-        <div className="flex flex-col items-center mb-4">
-          <FaEnvelopeOpen className="text-pink-400 text-4xl sm:text-6xl mb-2 drop-shadow" />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 handwritten text-center">Let's Connect</h1>
-        </div>
-        <p className="text-lg sm:text-xl text-gray-700 text-center mb-8 sm:mb-10 max-w-xl px-4">
-          If you've come this far! send me a message &lt;3
-        </p>
-        <div className="w-full max-w-lg px-4">
-          <div className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl border-l-8 border-dashed border-pink-300 flex flex-col gap-6 sm:gap-8 backdrop-blur-sm">
-            <h2 className="text-xl sm:text-2xl font-bold mb-2 handwritten text-center">Get In Touch</h2>
-            <div className="space-y-4 sm:space-y-6">
-              <div className="text-center">
-                <p className="text-base sm:text-lg font-semibold mb-2">Email</p>
-                <a 
-                  href="mailto:vaishnavi.adepu444@email.com" 
-                  className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-pink-500 text-white rounded-md font-semibold shadow hover:bg-pink-600 transition-colors text-sm sm:text-base"
+    <main>
+      <StatusBar />
+
+      <div className="px-4 sm:px-8 md:px-16 lg:px-24 py-16 sm:py-20">
+        <div className="max-w-3xl mx-auto">
+          {/* Header */}
+          <motion.div {...fadeUp(0)} className="mb-12 sm:mb-16">
+            <SectionLabel as="div" className="block mb-4">
+              say hello
+            </SectionLabel>
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-black text-ink">
+              let&rsquo;s talk
+            </h1>
+          </motion.div>
+
+          {/* Intro text */}
+          <motion.div {...fadeUp(0.08)} className="mb-12">
+            <p className="font-sans text-ink-soft text-base sm:text-lg leading-relaxed max-w-lg">
+              open to frontend internship conversations for Fall 2026. also
+              happy to talk about Clutch, building things, or literally anything
+              else.
+            </p>
+          </motion.div>
+
+          {/* Links grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-14">
+            {links.map((link, i) => (
+              <motion.div key={link.label} {...fadeUp(0.12 + i * 0.06)}>
+                <a
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  download={link.download ? true : undefined}
+                  className="block group focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg rounded-sm"
+                  aria-label={`${link.label}: ${link.value}`}
                 >
-                  <FaEnvelopeOpen className="text-sm sm:text-lg" />
-                  Send Email
+                  <Card
+                    padding="p-6"
+                    className="h-full hover:shadow-md transition-shadow cursor-pointer"
+                  >
+                    <div className="font-mono text-[11px] text-ink-mute mb-2 tracking-widest uppercase">
+                      {link.label}
+                    </div>
+                    <div className="font-display text-lg font-bold text-ink group-hover:text-accent transition-colors duration-200 break-all">
+                      {link.value}
+                    </div>
+                    <div className="font-mono text-[11px] text-ink-mute mt-2 tracking-wide">
+                      {link.external ? "↗ open" : link.download ? "↓ download" : "→ send"}
+                    </div>
+                  </Card>
                 </a>
-              </div>
-              <div className="text-center">
-                <p className="text-base sm:text-lg font-semibold mb-2">LinkedIn</p>
-                <a 
-                  href="https://www.linkedin.com/in/vaishnavi-adepu444" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-md font-semibold shadow hover:bg-blue-700 transition-colors text-sm sm:text-base"
-                >
-                  <FaLinkedin className="text-sm sm:text-lg" />
-                  Connect on LinkedIn
-                </a>
-              </div>
-              <div className="text-center">
-                <p className="text-base sm:text-lg font-semibold mb-2">GitHub</p>
-                <a 
-                  href="https://github.com/naviadepu" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gray-900 text-white rounded-md font-semibold shadow hover:bg-gray-700 transition-colors text-sm sm:text-base"
-                >
-                  <FaGithub className="text-sm sm:text-lg" />
-                  View My Work
-                </a>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
+
+          {/* Closer */}
+          <motion.div {...fadeUp(0.36)} className="text-center mb-14">
+            <p className="font-display text-xl sm:text-2xl font-bold text-ink-mute italic">
+              thanks for taking a look.
+            </p>
+          </motion.div>
+
+          {/* Nav */}
+          <motion.div
+            {...fadeUp(0.4)}
+            className="flex items-center justify-between border-t border-border pt-6"
+          >
+            <Link
+              href="/"
+              className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
+            >
+              ← home
+            </Link>
+            <Link
+              href="/work"
+              className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
+            >
+              the work →
+            </Link>
+          </motion.div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
-} 
+}

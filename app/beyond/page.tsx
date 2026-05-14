@@ -1,57 +1,122 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Navbar from '../../components/Navbar';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FaHome } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import StatusBar from "@/components/StatusBar";
+import SectionLabel from "@/components/SectionLabel";
+import PhotoStrip from "@/components/PhotoStrip";
 
-const galleryImages = [
-  { src: '/binder1.png', alt: 'Pitching Binder at entrepreneurship competition' },
-  { src: '/binder2.jpeg', alt: 'Presenting our startup solution' },
-  { src: '/binder3.jpeg', alt: 'Answering questions at the entrepreneurship competition' },
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.55, ease: "easeOut", delay },
+});
+
+const photos = [
+  {
+    src: "/binder1.png",
+    alt: "Pitching at entrepreneurship competition",
+    caption: "pitching binder",
+  },
+  {
+    src: "/binder2.jpeg",
+    alt: "Presenting startup solution",
+    caption: "presenting the solution",
+  },
+  {
+    src: "/binder3.jpeg",
+    alt: "Answering questions",
+    caption: "q&a round",
+  },
+  {
+    src: "/pic3.jpeg",
+    alt: "Navi",
+    caption: "somewhere on campus",
+  },
+];
+
+const interests = [
+  { label: "volleyball", note: "setter, rec league" },
+  { label: "ukulele", note: "learning slowly" },
+  { label: "gym", note: "4–5x a week" },
+  { label: "cooking", note: "south Indian food mostly" },
+  { label: "reading", note: "fiction + non-fiction" },
+  { label: "travel", note: "always planning next trip" },
 ];
 
 export default function Beyond() {
   return (
-    <>
-      <Navbar />
-      <main className="min-h-screen bg-[#F2F2F2] px-4 sm:px-6 pt-24 pb-12 flex flex-col items-center justify-center relative">
-        {/* Home Icon (Top Left) */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="absolute top-10 left-4 sm:left-10 z-50"
-        >
-          <Link href="/" className="text-gray-600 hover:text-black transition-colors cursor-pointer block p-2">
-            <FaHome className="text-lg sm:text-xl" />
-          </Link>
-        </motion.div>
-        
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 handwritten text-center px-4">Beyond Code</h1>
-        <p className="text-lg sm:text-xl text-gray-700 text-center mb-6 sm:mb-8 max-w-xl px-4">
-          I'm passionate about entrepreneurship and building solutions that make a difference. I've pitched in startup competitions and love exploring the intersection of technology and business. When I'm not coding, you'll find me thinking about the next big idea or connecting with fellow entrepreneurs.
-        </p>
-        <div className="w-full max-w-4xl px-4">
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 handwritten text-center">Startup Journey</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {galleryImages.map((img) => (
-              <div key={img.src} className="flex flex-col items-center">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={250}
-                  height={250}
-                  className="rounded-lg shadow-lg object-cover w-full h-[200px] sm:h-[250px]"
-                />
-                <span className="mt-2 text-gray-600 text-xs sm:text-sm text-center px-2">{img.alt}</span>
-              </div>
-            ))}
-          </div>
+    <main>
+      <StatusBar />
+
+      <div className="px-4 sm:px-8 md:px-16 lg:px-24 py-16 sm:py-20">
+        <div className="max-w-3xl mx-auto">
+          {/* Header */}
+          <motion.div {...fadeUp(0)} className="mb-12 sm:mb-16">
+            <SectionLabel as="div" className="block mb-4">
+              02 / beyond
+            </SectionLabel>
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-black text-ink">
+              off the clock
+            </h1>
+          </motion.div>
+
+          {/* Intro */}
+          <motion.div {...fadeUp(0.08)} className="mb-12">
+            <p className="font-sans text-ink-soft text-base sm:text-lg leading-relaxed max-w-xl">
+              building things is one part of it. the rest is volleyball, ukulele
+              chords i can&rsquo;t quite nail, and figuring out south indian
+              recipes from memory.
+            </p>
+          </motion.div>
+
+          {/* Photo strip */}
+          <motion.div {...fadeUp(0.12)} className="mb-14">
+            <PhotoStrip photos={photos} />
+          </motion.div>
+
+          {/* Interests grid */}
+          <motion.div {...fadeUp(0.18)}>
+            <SectionLabel as="div" className="block mb-6">
+              things i do
+            </SectionLabel>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {interests.map((item) => (
+                <div
+                  key={item.label}
+                  className="bg-surface border border-border rounded-sm p-4"
+                >
+                  <div className="font-display text-base font-bold text-ink mb-1">
+                    {item.label}
+                  </div>
+                  <div className="font-mono text-[11px] text-ink-mute tracking-wide">
+                    {item.note}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Nav */}
+          <motion.div
+            {...fadeUp(0.28)}
+            className="mt-14 flex items-center justify-between"
+          >
+            <Link
+              href="/"
+              className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
+            >
+              ← home
+            </Link>
+            <Link
+              href="/contact"
+              className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
+            >
+              let&rsquo;s talk →
+            </Link>
+          </motion.div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
-} 
+}
