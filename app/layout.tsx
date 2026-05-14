@@ -1,18 +1,31 @@
 import type { Metadata } from "next";
-import { Azeret_Mono, Delicious_Handrawn } from "next/font/google";
+import { Fraunces, Inter, VT323 } from "next/font/google";
 import "./globals.css";
+import MotionProvider from "@/components/MotionProvider";
 
-const Azeret__Mono = Azeret_Mono({
-  subsets: ["latin"], weight: ["400", "500", "600", "700"]
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
 });
 
-const  deliciousHandrawnFont = Delicious_Handrawn({
-  subsets: ["latin"], weight: ["400"]
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const vt323 = VT323({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-vt323",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio: Vaishnavi Adepu",
-  description: "WELCOME",
+  title: "Navi Adepu — Frontend Engineer",
+  description:
+    "Frontend engineer + founder. Building Clutch. GSU CS junior.",
 };
 
 export default function RootLayout({
@@ -23,9 +36,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${Azeret__Mono.className} ${deliciousHandrawnFont.className} antialiased`}
+        className={`${fraunces.variable} ${inter.variable} ${vt323.variable} font-sans bg-bg text-ink`}
       >
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

@@ -9,13 +9,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        bg: "var(--bg)",
+        surface: "var(--surface)",
+        ink: "var(--ink)",
+        "ink-soft": "var(--ink-soft)",
+        "ink-mute": "var(--ink-mute)",
+        border: "var(--border)",
+        accent: "var(--accent)",
+        "clutch-pink": "var(--clutch-pink)",
       },
       fontFamily: {
-        mono: ['Courier New', 'Courier', 'monospace'],  // Classic typewriter style
-        plex: ['IBM Plex Mono', 'monospace'],            // Modern monospaced
-        space: ['Space Mono', 'monospace'],              // Retro aesthetic
+        display: ["var(--font-fraunces)", "serif"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-vt323)", "monospace"],
       },
     },
   },
