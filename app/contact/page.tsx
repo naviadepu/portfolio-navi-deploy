@@ -15,8 +15,8 @@ const fadeUp = (delay = 0) => ({
 const links = [
   {
     label: "email",
-    value: "vaishnavi.adepu444@email.com",
-    href: "mailto:vaishnavi.adepu444@email.com",
+    value: "vaishnavi.adepu444@gmail.com",
+    href: "mailto:vaishnavi.adepu444@gmail.com",
     external: false,
   },
   {
@@ -80,7 +80,7 @@ export default function Contact() {
                 >
                   <Card
                     padding="p-6"
-                    className="h-full hover:shadow-md transition-shadow cursor-pointer"
+                    className="h-full hover:brightness-105 active:bevel-sunken transition-[filter] duration-150 cursor-pointer"
                   >
                     <div className="font-mono text-[11px] text-ink-mute mb-2 tracking-widest uppercase">
                       {link.label}
@@ -110,16 +110,16 @@ export default function Contact() {
             className="flex items-center justify-between border-t border-border pt-6"
           >
             <Link
+              href="/content"
+              className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
+            >
+              ← content
+            </Link>
+            <Link
               href="/"
               className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
             >
-              ← home
-            </Link>
-            <Link
-              href="/work"
-              className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
-            >
-              the work →
+              home →
             </Link>
           </motion.div>
         </div>

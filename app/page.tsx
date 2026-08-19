@@ -2,12 +2,41 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import type { IconType } from "react-icons";
+import {
+  SiTypescript,
+  SiJavascript,
+  SiPython,
+  SiCplusplus,
+  SiHtml5,
+  SiCss3,
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiExpress,
+  SiFirebase,
+  SiFlask,
+  SiFastapi,
+  SiTailwindcss,
+  SiFigma,
+  SiPostgresql,
+  SiMongodb,
+  SiPandas,
+  SiScikitlearn,
+  SiGit,
+  SiGithub,
+  SiLinux,
+  SiDocker,
+  SiPytest,
+  SiJira,
+  SiLinkedin,
+} from "react-icons/si";
+import { FaJava, FaAws } from "react-icons/fa6";
+import { TbDatabase } from "react-icons/tb";
+import { MdEmail } from "react-icons/md";
 import StatusBar from "@/components/StatusBar";
 import WindowPanel from "@/components/WindowPanel";
 import SectionLabel from "@/components/SectionLabel";
-import Card from "@/components/Card";
-import { nowConfig } from "@/lib/siteConfig";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -15,252 +44,200 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.65, ease: "easeOut", delay },
 });
 
+const linkedinUrl = "https://www.linkedin.com/in/vaishnavi-adepu444";
+
+const skills: { name: string; Icon: IconType }[] = [
+  { name: "TypeScript", Icon: SiTypescript },
+  { name: "JavaScript", Icon: SiJavascript },
+  { name: "Python", Icon: SiPython },
+  { name: "Java", Icon: FaJava },
+  { name: "C++", Icon: SiCplusplus },
+  { name: "SQL", Icon: TbDatabase },
+  { name: "HTML", Icon: SiHtml5 },
+  { name: "CSS", Icon: SiCss3 },
+  { name: "React", Icon: SiReact },
+  { name: "Next.js", Icon: SiNextdotjs },
+  { name: "Node.js", Icon: SiNodedotjs },
+  { name: "Express", Icon: SiExpress },
+  { name: "Firebase", Icon: SiFirebase },
+  { name: "Flask", Icon: SiFlask },
+  { name: "FastAPI", Icon: SiFastapi },
+  { name: "Tailwind", Icon: SiTailwindcss },
+  { name: "Figma", Icon: SiFigma },
+  { name: "PostgreSQL", Icon: SiPostgresql },
+  { name: "MongoDB", Icon: SiMongodb },
+  { name: "AWS", Icon: FaAws },
+  { name: "pandas", Icon: SiPandas },
+  { name: "scikit-learn", Icon: SiScikitlearn },
+  { name: "Git", Icon: SiGit },
+  { name: "GitHub", Icon: SiGithub },
+  { name: "Linux", Icon: SiLinux },
+  { name: "Docker", Icon: SiDocker },
+  { name: "Pytest", Icon: SiPytest },
+  { name: "Jira", Icon: SiJira },
+];
+
+const socials = [
+  {
+    label: "linkedin",
+    value: "vaishnavi-adepu444",
+    href: linkedinUrl,
+    Icon: SiLinkedin,
+  },
+  {
+    label: "github",
+    value: "naviadepu",
+    href: "https://github.com/naviadepu",
+    Icon: SiGithub,
+  },
+  {
+    label: "email",
+    value: "vaishnavi.adepu444@gmail.com",
+    href: "mailto:vaishnavi.adepu444@gmail.com",
+    Icon: MdEmail,
+  },
+];
+
 export default function Home() {
   return (
     <main>
       <StatusBar />
 
-      {/* Hero */}
-      <section className="px-4 sm:px-8 md:px-16 lg:px-24 pt-16 sm:pt-20 pb-24 md:pb-32">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
-            {/* Name block */}
-            <div className="flex-1 min-w-0">
-              <motion.h1
-                {...fadeUp(0)}
-                className="font-display text-[clamp(4rem,14vw,10rem)] font-black text-ink leading-[0.88] tracking-tight mb-5"
-              >
-                NAVI
-              </motion.h1>
-              <motion.p
-                {...fadeUp(0.12)}
-                className="text-ink-soft text-lg sm:text-xl font-sans mb-2 leading-relaxed"
-              >
-                frontend engineer + founder.{" "}
-                <span className="text-ink font-medium">building Clutch.</span>
-              </motion.p>
-              <motion.p
-                {...fadeUp(0.2)}
-                className="font-mono text-[12px] text-ink-mute tracking-widest uppercase"
-              >
-                Atlanta, GA · GSU &rsquo;26 · F-1
-              </motion.p>
+      {/* Hero / about me */}
+      <section className="px-4 sm:px-8 md:px-16 lg:px-24 pt-12 sm:pt-16 pb-10 sm:pb-12">
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
+          <motion.div {...fadeUp(0)} className="mb-10">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-black text-ink leading-[0.9]">
+              about
+              <br />
+              me!
+              <span
+                aria-hidden="true"
+                className="inline-block w-[0.1em] h-[0.7em] bg-accent align-middle ml-2 animate-blink"
+              />
+            </h1>
+          </motion.div>
 
-              {/* Nav links under the name on desktop */}
-              <motion.nav
-                {...fadeUp(0.28)}
-                aria-label="Main navigation"
-                className="mt-10 hidden lg:flex items-center gap-8"
-              >
-                {[
-                  { href: "/work", label: "work" },
-                  { href: "/about", label: "about" },
-                  { href: "/now", label: "now" },
-                  { href: "/beyond", label: "beyond" },
-                  { href: "/contact", label: "contact" },
-                ].map(({ href, label }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="font-mono text-[13px] text-ink-soft hover:text-ink transition-colors tracking-wide"
-                  >
-                    {label}
-                  </Link>
-                ))}
-              </motion.nav>
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+            {/* Left column */}
+            <div className="flex-1 min-w-0">
+              {/* Name + LinkedIn + brief blurb */}
+              <motion.div {...fadeUp(0.06)} className="mb-12">
+                <a
+                  href={linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-display text-2xl sm:text-3xl font-black text-accent hover:opacity-80 transition-opacity"
+                >
+                  vaishnavi (navi) adepu
+                  <span aria-hidden="true" className="text-lg sm:text-xl">
+                    ↗
+                  </span>
+                </a>
+                <p className="font-sans text-ink-soft text-base sm:text-lg leading-relaxed italic mt-3 max-w-xl">
+                  junior at Georgia State studying CS, building products end
+                  to end — React/Next.js frontends, Python/Flask backends,
+                  and everything in between. Founder of Clutch, research
+                  assistant at the GSU Digital Humans Lab, and always looking
+                  for the next thing worth building.
+                </p>
+              </motion.div>
+
+              {/* Skills */}
+              <motion.div {...fadeUp(0.12)} className="mb-12">
+                <SectionLabel as="div" className="block mb-5">
+                  skills
+                </SectionLabel>
+                <div className="flex flex-wrap gap-3">
+                  {skills.map(({ name, Icon }) => (
+                    <div
+                      key={name}
+                      title={name}
+                      className="bevel-raised rounded-full w-11 h-11 flex items-center justify-center text-lg text-ink shrink-0"
+                    >
+                      <Icon aria-hidden="true" />
+                      <span className="sr-only">{name}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Education */}
+              <motion.div {...fadeUp(0.18)}>
+                <SectionLabel as="div" className="block mb-5">
+                  education
+                </SectionLabel>
+                <div className="space-y-1.5">
+                  <div className="font-mono text-[12px] font-bold text-ink-mute tracking-wide">
+                    Expected Dec 2027
+                  </div>
+                  <div className="font-display text-xl sm:text-2xl font-black text-ink uppercase">
+                    Georgia State University
+                  </div>
+                  <div className="font-sans text-ink-soft text-sm sm:text-base italic">
+                    B.S. in Computer Science · Honors College · GPA 3.93 ·
+                    Atlanta, GA
+                  </div>
+                  <div className="font-mono text-[11px] text-ink-mute leading-relaxed pt-2">
+                    Awards: NCWIT Winner, GSURF Microsoft Scholarship, STEM
+                    Scholar x2, HackHers 1st Place
+                  </div>
+                  <div className="font-mono text-[11px] text-ink-mute leading-relaxed">
+                    Coursework: Data Structures &amp; Algorithms,
+                    Object-Oriented Programming, Computer Organization,
+                    Database Systems, Software Development, Web Development
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
-            {/* MEET NAVI window */}
-            <motion.div {...fadeUp(0.18)} className="lg:w-72 xl:w-80 shrink-0">
+            {/* Right column — MEET-NAVI + SOCIALS windows */}
+            <motion.div
+              {...fadeUp(0.1)}
+              className="lg:w-72 xl:w-80 shrink-0 relative self-start"
+            >
               <WindowPanel title="MEET-NAVI">
-                <div className="flex flex-col gap-4 p-5">
-                  <div className="relative w-full h-48 sm:h-56 overflow-hidden rounded-sm bg-border">
-                    <Image
-                      src="/pic.jpeg"
-                      alt="Navi Adepu"
-                      fill
-                      className="object-cover object-top"
-                      priority
-                      sizes="(max-width: 768px) 100vw, 320px"
-                    />
-                  </div>
-                  <p className="font-mono text-[12px] text-ink-soft leading-relaxed tracking-wide">
-                    junior at gsu studying cs. co-founded clutch, a daily
-                    women&rsquo;s health platform. contributing to ai research at
-                    animasentio lab. mostly i build things on the frontend.
-                  </p>
-                  <Link
-                    href="/about"
-                    className="font-mono text-[11px] text-accent hover:opacity-80 transition-opacity tracking-widest uppercase"
-                  >
-                    more about me →
-                  </Link>
+                <div className="relative w-full h-64 sm:h-72 lg:h-80 overflow-hidden bg-border">
+                  <Image
+                    src="/pic.jpeg"
+                    alt="Vaishnavi (Navi) Adepu"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 320px"
+                  />
+                </div>
+              </WindowPanel>
+
+              <WindowPanel
+                title="SOCIALS"
+                className="w-[88%] -mt-8 ml-auto relative z-10"
+              >
+                <div className="p-4 space-y-3">
+                  {socials.map(({ label, value, href, Icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target={label === "email" ? undefined : "_blank"}
+                      rel={label === "email" ? undefined : "noopener noreferrer"}
+                      className="flex items-center gap-2.5 group"
+                    >
+                      <Icon
+                        aria-hidden="true"
+                        className="text-base text-ink shrink-0"
+                      />
+                      <span className="font-mono text-[12px] text-ink-soft group-hover:text-accent transition-colors truncate">
+                        {value}
+                      </span>
+                    </a>
+                  ))}
                 </div>
               </WindowPanel>
             </motion.div>
           </div>
 
-          {/* Mobile nav */}
-          <motion.nav
-            {...fadeUp(0.3)}
-            aria-label="Main navigation"
-            className="mt-10 lg:hidden flex flex-wrap gap-5"
-          >
-            {[
-              { href: "/work", label: "work" },
-              { href: "/about", label: "about" },
-              { href: "/now", label: "now" },
-              { href: "/beyond", label: "beyond" },
-              { href: "/contact", label: "contact" },
-            ].map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="font-mono text-[13px] text-ink-soft hover:text-ink transition-colors tracking-wide"
-              >
-                {label}
-              </Link>
-            ))}
-          </motion.nav>
         </div>
       </section>
-
-      {/* Currently */}
-      <section
-        className="px-4 sm:px-8 md:px-16 lg:px-24 py-16 border-t border-border"
-        aria-labelledby="currently-heading"
-      >
-        <div className="max-w-7xl mx-auto">
-          <SectionLabel as="div" className="block mb-6">
-            ** currently
-          </SectionLabel>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <Card padding="p-5" as="article">
-              <div className="font-mono text-[11px] text-ink-mute mb-2 tracking-widest uppercase">
-                building
-              </div>
-              <div className="font-sans font-medium text-ink text-sm">
-                {nowConfig.building.title}
-              </div>
-              <div className="font-sans text-sm text-ink-soft mt-1 leading-relaxed">
-                {nowConfig.building.description.split(".")[0]}.
-              </div>
-            </Card>
-            <Card padding="p-5" as="article">
-              <div className="font-mono text-[11px] text-ink-mute mb-2 tracking-widest uppercase">
-                learning
-              </div>
-              <div className="font-sans text-sm text-ink leading-relaxed">
-                {nowConfig.learning}
-              </div>
-            </Card>
-            <Card padding="p-5" as="article">
-              <div className="font-mono text-[11px] text-ink-mute mb-2 tracking-widest uppercase">
-                reading
-              </div>
-              <div className="font-sans text-sm text-ink leading-relaxed">
-                {nowConfig.reading}
-              </div>
-            </Card>
-          </div>
-          <div className="mt-4">
-            <Link
-              href="/now"
-              className="font-mono text-[12px] text-ink-mute hover:text-ink transition-colors tracking-wide"
-            >
-              → full now page
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Section previews */}
-      <section
-        className="px-4 sm:px-8 md:px-16 lg:px-24 py-16 border-t border-border"
-        aria-labelledby="explore-heading"
-      >
-        <div className="max-w-7xl mx-auto">
-          <SectionLabel as="div" className="block mb-6">
-            explore
-          </SectionLabel>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {[
-              {
-                href: "/work",
-                label: "03 / WORK",
-                title: "the work",
-                desc: "Clutch, Vivience AI, Binder, and more shipped things.",
-              },
-              {
-                href: "/about",
-                label: "01 / ABOUT",
-                title: "the journey",
-                desc: "GSU CS junior, F-1, research contributor, builder.",
-              },
-              {
-                href: "/beyond",
-                label: "02 / BEYOND",
-                title: "off the clock",
-                desc: "Volleyball, ukulele, gym, and other side quests.",
-              },
-            ].map(({ href, label, title, desc }) => (
-              <Link
-                key={href}
-                href={href}
-                className="block group focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg rounded-sm"
-              >
-                <Card
-                  padding="p-6"
-                  className="h-full transition-shadow duration-200 group-hover:shadow-md cursor-pointer"
-                >
-                  <div className="font-mono text-[11px] text-ink-mute mb-3 tracking-widest uppercase">
-                    {label}
-                  </div>
-                  <div className="font-display text-xl font-bold text-ink mb-2 group-hover:text-accent transition-colors duration-200">
-                    {title}
-                  </div>
-                  <div className="font-sans text-sm text-ink-soft leading-relaxed">
-                    {desc}
-                  </div>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="px-4 sm:px-8 md:px-16 lg:px-24 py-8 border-t border-border">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <span className="font-mono text-[12px] text-ink-mute tracking-wide">
-            Atlanta, GA — Vaishnavi Adepu
-          </span>
-          <div className="flex items-center gap-6">
-            <a
-              href="mailto:vaishnavi.adepu444@email.com"
-              className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
-            >
-              email
-            </a>
-            <a
-              href="https://linkedin.com/in/vaishnavi-adepu444"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
-            >
-              linkedin
-            </a>
-            <a
-              href="https://github.com/naviadepu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
-            >
-              github
-            </a>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }

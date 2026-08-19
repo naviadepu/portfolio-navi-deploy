@@ -14,10 +14,6 @@ export default function Card({
   as: Tag = "div",
 }: CardProps) {
   return (
-    <Tag
-      className={`bg-surface border border-border rounded-sm ${padding} ${className}`}
-    >
-      {children}
-    </Tag>
+    <Tag className={`bevel-well ${padding} ${className}`}>{children}</Tag>
   );
 }

@@ -11,7 +11,7 @@ export default function SectionLabel({
 }: SectionLabelProps) {
   return (
     <Tag
-      className={`font-mono text-[13px] tracking-widest uppercase text-ink-soft ${className}`}
+      className={`font-mono text-[13px] font-bold tracking-widest uppercase text-accent underline decoration-2 underline-offset-2 ${className}`}
     >
       {children}
     </Tag>

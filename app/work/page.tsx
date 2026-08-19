@@ -5,19 +5,19 @@ import Link from "next/link";
 import StatusBar from "@/components/StatusBar";
 import SectionLabel from "@/components/SectionLabel";
 import ProjectCard from "@/components/ProjectCard";
+import Card from "@/components/Card";
+import Sticker from "@/components/Sticker";
 import { projects, archiveProjects } from "@/lib/siteConfig";
 
 const imageExists: Record<string, boolean> = {
-  clutch: false,
-  vivience: false,
-  binder: true,
+  vivience: true,
 };
 
 const accentColors: Record<string, string> = {
-  clutch: "#FF0090",
   vivience: "#7B2E2A",
-  binder: "#7B2E2A",
 };
+
+const workProjects = projects.filter((p) => !p.isStartup);
 
 export default function WorkPage() {
   return (
@@ -34,23 +34,28 @@ export default function WorkPage() {
             className="mb-14 sm:mb-16"
           >
             <SectionLabel as="div" className="block mb-4">
-              03 projects
+              01 / project
             </SectionLabel>
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-black text-ink">
-              the work
-            </h1>
+            <div className="flex flex-wrap items-center gap-4">
+              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-black text-ink">
+                the work
+              </h1>
+              <Sticker rotate={-6} className="hidden sm:inline-flex">
+                🔬 research
+              </Sticker>
+            </div>
           </motion.div>
 
           {/* Featured projects grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-20" role="list">
-            {projects.map((project, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10" role="list">
+            {workProjects.map((project, i) => (
               <motion.div
                 key={project.slug}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 + i * 0.12 }}
                 role="listitem"
-                className={project.isLead ? "md:col-span-2" : ""}
+                className={workProjects.length === 1 ? "md:col-span-2" : ""}
               >
                 <ProjectCard
                   title={project.title}
@@ -66,6 +71,33 @@ export default function WorkPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Startup pointer */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.3 }}
+            className="mb-14"
+          >
+            <Link
+              href="/startup"
+              className="block group focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg rounded-sm"
+            >
+              <Card
+                padding="p-6"
+                className="hover:brightness-105 active:bevel-sunken transition-[filter] duration-150 cursor-pointer flex items-center justify-between gap-4"
+              >
+                <div>
+                  <div className="font-mono text-[11px] text-ink-mute mb-1.5 tracking-widest uppercase">
+                    04 / startup
+                  </div>
+                  <div className="font-display text-lg font-bold text-ink group-hover:text-accent transition-colors duration-200">
+                    Clutch &amp; Binder live under startup →
+                  </div>
+                </div>
+              </Card>
+            </Link>
+          </motion.div>
 
           {/* Archive */}
           <motion.div
@@ -112,9 +144,12 @@ export default function WorkPage() {
           >
             ← home
           </Link>
-          <span className="font-mono text-[12px] text-ink-mute tracking-wide">
-            naviadepu
-          </span>
+          <Link
+            href="/leadership"
+            className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
+          >
+            leadership →
+          </Link>
         </div>
       </footer>
     </main>

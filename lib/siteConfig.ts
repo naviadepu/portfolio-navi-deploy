@@ -13,8 +13,75 @@ export const nowConfig = {
   reading: "The Creative Act by Rick Rubin",
   learning: "React Server Components and Next.js 15 App Router patterns",
   listening: "Chromonicci, Tame Impala, TV Girl",
-  lastUpdated: "05.14.26",
+  creating: "posting Clutch behind-the-scenes as @clutchhq_",
+  lastUpdated: "08.19.26",
 };
+
+export interface ContentPost {
+  platform: "Instagram" | "TikTok";
+  hook: string;
+  note: string;
+}
+
+export const contentConfig = {
+  handle: "@clutchhq_",
+  since: "April 2026",
+  platforms: [
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/clutchhq_",
+      description:
+        "Behind-the-scenes of building Clutch — product decisions, design pulls, and the day-to-day of a two-person startup.",
+    },
+    {
+      name: "TikTok",
+      url: "https://www.tiktok.com/@clutchhq_",
+      description:
+        "Short-form build logs, founder-engineer takes, and the messier parts of shipping a startup that don't make it into a pitch deck.",
+    },
+  ],
+  pillars: [
+    "building in public",
+    "founder + frontend lead POV",
+    "product & design decisions",
+    "startup life, unfiltered",
+  ],
+};
+
+export interface LeadershipRole {
+  org: string;
+  role: string;
+  dates: string;
+  description: string;
+  highlights: string[];
+}
+
+export const leadership: LeadershipRole[] = [
+  {
+    org: "Women in Tech",
+    role: "President",
+    dates: "Oct 2023 – Oct 2025",
+    description:
+      "Led the GSU chapter for two years — grew membership, ran the exec board, and built out programming that got more women into technical roles and internships.",
+    highlights: [
+      "Ran the exec board and set chapter strategy across two academic years",
+      "Built recruiting and workshop programming aimed at technical internship prep",
+      "Grew active membership and chapter visibility on campus",
+    ],
+  },
+  {
+    org: "ProgSU",
+    role: "VP of Operations",
+    dates: "Jul 2025 – Jan 2026",
+    description:
+      "Ran the operational backbone of GSU's programming club — event logistics, budget, and the systems that let the technical side of the club actually ship.",
+    highlights: [
+      "Owned event logistics and budget for club programming",
+      "Coordinated across officers to keep workshops and events running on schedule",
+      "Handled the operational work that let technical leads focus on content",
+    ],
+  },
+];
 
 export interface Project {
   slug: string;
@@ -26,6 +93,7 @@ export interface Project {
   year: string;
   role: string;
   isLead: boolean;
+  isStartup: boolean;
   liveUrl: string;
   githubUrl: string;
   problem: string;
@@ -42,11 +110,12 @@ export const projects: Project[] = [
       "A daily women's health platform for tracking, sharing, and discovering community.",
     description:
       "Co-founded Clutch to give women a trusted daily space to understand their health. Built the full frontend — mobile in React Native, web in Next.js.",
-    image: "/clutch-hero.png",
+    image: "/clutch-tabling-1.jpg",
     stack: ["React Native", "Next.js", "Firebase", "TypeScript", "Expo"],
     year: "2024–present",
     role: "Co-founder · Frontend Lead",
     isLead: true,
+    isStartup: true,
     liveUrl: "",
     githubUrl: "https://github.com/naviadepu",
     problem:
@@ -80,13 +149,15 @@ export const projects: Project[] = [
       "AI-driven UX research tooling for qualitative analysis at Animasentio Lab.",
     description:
       "Research contributor at the Animasentio Lab. Built AI tooling to accelerate qualitative analysis of user interview transcripts. Paper accepted to IEEE ComComAp 2025.",
-    image: "/vivience-hero.png",
+    image: "/vivience_ai.png",
     stack: ["Python", "OpenAI API", "Next.js", "React", "TypeScript"],
     year: "2024",
     role: "Research Contributor · Animasentio Lab",
     isLead: false,
-    liveUrl: "",
-    githubUrl: "https://github.com/naviadepu",
+    isStartup: false,
+    liveUrl:
+      "https://cmii.gsu.edu/2025/11/04/exploring-empathy-in-artificial-intelligence-the-emergence-of-lightarch-and-annelore/",
+    githubUrl: "",
     problem:
       "Qualitative UX research generates enormous amounts of unstructured interview data. Researchers spend more time coding themes than acting on insights — slowing the entire design cycle.",
     myRole:
@@ -118,6 +189,7 @@ export const projects: Project[] = [
     year: "2023",
     role: "Solo Developer",
     isLead: false,
+    isStartup: true,
     liveUrl: "https://binder-ivory.vercel.app/",
     githubUrl: "https://github.com/naviadepu",
     problem:

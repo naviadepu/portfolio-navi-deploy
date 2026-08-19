@@ -18,7 +18,7 @@ export default function PhotoStrip({ photos }: PhotoStripProps) {
     >
       {photos.map((photo, i) => (
         <figure key={i} className="shrink-0 flex flex-col gap-2">
-          <div className="relative w-44 h-52 sm:w-52 sm:h-64 overflow-hidden rounded-sm bg-border">
+          <div className="relative w-44 h-52 sm:w-52 sm:h-64 overflow-hidden bg-border">
             <Image
               src={photo.src}
               alt={photo.alt}

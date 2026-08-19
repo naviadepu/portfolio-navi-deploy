@@ -14,39 +14,23 @@ export default function WindowPanel({
   backHref,
   className = "",
 }: WindowPanelProps) {
+  const closeBtn =
+    "flex items-center justify-center w-[18px] h-[18px] bevel-raised text-ink text-[11px] font-bold leading-none active:bevel-sunken";
+
   return (
-    <div
-      className={`border border-border rounded-sm overflow-hidden shadow-sm ${className}`}
-    >
+    <div className={`bevel-raised p-0.5 ${className}`}>
       {/* Title bar */}
-      <div className="bg-ink text-bg font-mono text-[12px] tracking-widest uppercase px-3 py-2 flex items-center justify-between select-none">
-        <span>{title}</span>
-        <div className="flex items-center gap-1.5">
-          {/* Decorative window dots */}
-          <span
-            className="block w-2.5 h-2.5 rounded-full"
-            style={{ background: "rgba(247,244,238,0.15)" }}
-            aria-hidden="true"
-          />
-          <span
-            className="block w-2.5 h-2.5 rounded-full"
-            style={{ background: "rgba(247,244,238,0.15)" }}
-            aria-hidden="true"
-          />
-          {backHref ? (
-            <Link
-              href={backHref}
-              aria-label="Close and return to work"
-              className="block w-2.5 h-2.5 rounded-full bg-accent hover:opacity-80 transition-opacity focus:outline-none focus:ring-1 focus:ring-bg focus:ring-offset-1 focus:ring-offset-ink"
-            />
-          ) : (
-            <span
-              className="block w-2.5 h-2.5 rounded-full bg-accent"
-              role="button"
-              aria-label="Close panel (decorative)"
-            />
-          )}
-        </div>
+      <div className="titlebar-gradient text-white font-mono text-[13px] font-bold tracking-wide uppercase px-2 py-1 flex items-center justify-between select-none crt-text">
+        <span className="truncate">{title}</span>
+        {backHref ? (
+          <Link href={backHref} aria-label="Close and go back" className={closeBtn}>
+            ×
+          </Link>
+        ) : (
+          <span aria-hidden="true" className={closeBtn}>
+            ×
+          </span>
+        )}
       </div>
       {/* Content */}
       <div className="bg-surface">{children}</div>

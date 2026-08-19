@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, VT323 } from "next/font/google";
+import { Pixelify_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import MotionProvider from "@/components/MotionProvider";
 
-const fraunces = Fraunces({
+const pixelify = Pixelify_Sans({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-pixel",
   display: "swap",
 });
 
@@ -15,17 +16,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const vt323 = VT323({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-vt323",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Navi Adepu — Frontend Engineer",
-  description:
-    "Frontend engineer + founder. Building Clutch. GSU CS junior.",
+  title: "Navi Adepu",
+  description: "Co-founder building Clutch. GSU CS junior. Atlanta, GA.",
 };
 
 export default function RootLayout({
@@ -36,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fraunces.variable} ${inter.variable} ${vt323.variable} font-sans bg-bg text-ink`}
+        className={`${pixelify.variable} ${inter.variable} font-sans bg-bg text-ink`}
       >
         <MotionProvider>{children}</MotionProvider>
       </body>

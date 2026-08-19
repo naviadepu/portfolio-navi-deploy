@@ -40,14 +40,9 @@ export default function ProjectCard({
       <motion.article
         onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
-        animate={{
-          y: hovered ? -4 : 0,
-          boxShadow: hovered
-            ? "0 16px 48px rgba(28,27,23,0.10)"
-            : "0 1px 4px rgba(28,27,23,0.06)",
-        }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
-        className="bg-surface border border-border overflow-hidden rounded-sm"
+        animate={{ y: hovered ? -3 : 0 }}
+        transition={{ duration: 0.15, ease: "easeOut" }}
+        className="bevel-well overflow-hidden"
       >
         {/* Cover */}
         <div className="relative w-full h-52 sm:h-60 overflow-hidden">

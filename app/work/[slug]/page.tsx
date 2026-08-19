@@ -11,13 +11,37 @@ import SectionLabel from "@/components/SectionLabel";
 import Card from "@/components/Card";
 import TagPill from "@/components/TagPill";
 import PullQuote from "@/components/PullQuote";
+import PhotoStrip from "@/components/PhotoStrip";
 import { projects } from "@/lib/siteConfig";
 
 const imageExists: Record<string, boolean> = {
-  clutch: false,
-  vivience: false,
+  clutch: true,
+  vivience: true,
   binder: true,
 };
+
+const clutchPhotos = [
+  {
+    src: "/clutch-tabling-1.jpg",
+    alt: "Tabling for Clutch at GSU market day",
+    caption: "tabling at GSU market day",
+  },
+  {
+    src: "/clutch-tabling-2.jpg",
+    alt: "Talking to a student about Clutch",
+    caption: "pitching Clutch one conversation at a time",
+  },
+  {
+    src: "/clutch-social-mission.jpg",
+    alt: "Clutch Instagram post — The Mission",
+    caption: "@clutchhq_ — the mission",
+  },
+  {
+    src: "/clutch-social-thankyou.jpg",
+    alt: "Clutch Instagram post — 50+ sign-ups thank you",
+    caption: "@clutchhq_ — 50+ sign-ups",
+  },
+];
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -38,6 +62,8 @@ export default function ProjectPage({
   const accentStyle = isClutch
     ? ({ "--accent": "var(--clutch-pink)" } as React.CSSProperties)
     : {};
+  const backHref = project.isStartup ? "/startup" : "/work";
+  const backLabel = project.isStartup ? "← all startups" : "← all work";
 
   return (
     <div style={accentStyle}>
@@ -48,7 +74,7 @@ export default function ProjectPage({
           <div className="max-w-4xl mx-auto">
             {/* Window chrome */}
             <motion.div {...fadeUp(0)} className="mb-10">
-              <WindowPanel title={project.title} backHref="/work">
+              <WindowPanel title={project.title} backHref={backHref}>
                 {/* Hero image */}
                 <div className="relative w-full h-56 sm:h-72 md:h-96 overflow-hidden bg-border">
                   {imageExists[slug] ? (
@@ -102,6 +128,16 @@ export default function ProjectPage({
                 {project.role}
               </div>
             </motion.div>
+
+            {/* Photo strip */}
+            {isClutch && (
+              <motion.div {...fadeUp(0.1)} className="mb-12">
+                <SectionLabel as="div" className="block mb-4">
+                  in the field
+                </SectionLabel>
+                <PhotoStrip photos={clutchPhotos} />
+              </motion.div>
+            )}
 
             {/* 01 / PROBLEM */}
             <motion.div {...fadeUp(0.12)} className="mb-8">
@@ -197,13 +233,13 @@ export default function ProjectPage({
                 >
                   <Card
                     padding="p-5"
-                    className="hover:shadow-md transition-shadow cursor-pointer group"
+                    className="hover:brightness-105 active:bevel-sunken transition-[filter] duration-150 cursor-pointer group"
                   >
                     <div className="font-mono text-[11px] text-ink-mute mb-1.5 tracking-widest uppercase">
-                      live project
+                      {slug === "vivience" ? "featured" : "live project"}
                     </div>
                     <div className="font-display text-lg font-bold text-ink group-hover:text-accent transition-colors">
-                      View live →
+                      {slug === "vivience" ? "Read the feature →" : "View live →"}
                     </div>
                   </Card>
                 </a>
@@ -217,7 +253,7 @@ export default function ProjectPage({
                 >
                   <Card
                     padding="p-5"
-                    className="hover:shadow-md transition-shadow cursor-pointer group"
+                    className="hover:brightness-105 active:bevel-sunken transition-[filter] duration-150 cursor-pointer group"
                   >
                     <div className="font-mono text-[11px] text-ink-mute mb-1.5 tracking-widest uppercase">
                       source
@@ -233,10 +269,10 @@ export default function ProjectPage({
             {/* Nav */}
             <div className="flex items-center justify-between pt-4 border-t border-border">
               <Link
-                href="/work"
+                href={backHref}
                 className="font-mono text-[12px] text-ink-soft hover:text-ink transition-colors tracking-wide"
               >
-                ← all work
+                {backLabel}
               </Link>
               <Link
                 href="/"

@@ -84,7 +84,7 @@ export default function Beyond() {
               {interests.map((item) => (
                 <div
                   key={item.label}
-                  className="bg-surface border border-border rounded-sm p-4"
+                  className="bevel-well p-4"
                 >
                   <div className="font-display text-base font-bold text-ink mb-1">
                     {item.label}
